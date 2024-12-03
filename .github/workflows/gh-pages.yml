@@ -29,6 +29,15 @@ jobs:
       - name: Build
         run: npx @koalanis/advent-pages generate
 
+      - name: Verify static site generation
+        run: |
+          if [-d "advent-pages"]; then
+            echo "Folder exists"
+          else
+            echo "Folder does not exist!"
+            exit 1
+          fi
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
