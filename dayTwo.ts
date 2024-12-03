@@ -1,15 +1,16 @@
 import { getAdventContext } from "./utils.ts";
 
 type ReportOutcome = "safe" | "unsafe";
+
 function checkReport(line: string): ReportOutcome {
   const parsed = line.split(" ");
   let increasing: boolean | null = null;
 
   for (let i = 1; i < parsed.length; i++) {
-    let num = Number.parseInt(parsed[i]);
+    const num = Number.parseInt(parsed[i]);
     // deno-lint-ignore prefer-const
     let prev = Number.parseInt(parsed[i - 1]);
-    let delta = num - prev;
+    const delta = num - prev;
 
     const oldIncreasing: boolean | null = increasing;
     if (delta > 0) increasing = true;
@@ -26,7 +27,7 @@ function checkReport(line: string): ReportOutcome {
   return "safe";
 }
 
-function checkReportTwo(line: string): ReportOutcome {
+function checkReportWithSingleReplacement(line: string): ReportOutcome {
   const parsed = line.split(" ");
 
   for (let i = 0; i < parsed.length; i++) {
@@ -43,20 +44,22 @@ function checkReportTwo(line: string): ReportOutcome {
 export async function dayTwo() {
   const ADVENT = getAdventContext({ day: 2, year: 2024, debug: true });
   const text = await ADVENT.getDataFile();
-  const out = text.split("\n").map((line: string) => checkReport(line))
-    .filter((status) => status == "safe")
+
+  const reportLists = text.split("\n");
+  const isSafe = (status: ReportOutcome): boolean => status === "safe";
+  // part one
+  const out = reportLists
+    .map(checkReport)
+    .filter(isSafe)
     .length;
   ADVENT.reportPartOne(out);
 
-  const out2 = text.split("\n")
-    .map((line: string) => {
-      if (checkReport(line) === "safe") {
-        return "safe";
-      }
-      return checkReportTwo(line);
-    })
-    .filter((status) => status == "safe")
+  // part two
+  const checkReportTwo = (line: string): ReportOutcome =>
+    isSafe(checkReport(line)) ? "safe" : checkReportWithSingleReplacement(line);
+  const out2 = reportLists
+    .map(checkReportTwo)
+    .filter(isSafe)
     .length;
-
   ADVENT.reportPartTwo(out2);
 }

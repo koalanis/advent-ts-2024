@@ -13,7 +13,7 @@ type AdventContext = AdventContextInput & {
 
 function getDayName(day: number): string {
   if (day == null || day <= 0 || day > 25) {
-    throw new Error(`Cannot handle ${day} advent of code day `)
+    throw new Error(`Cannot handle ${day} advent of code day `);
   }
   return `day${day}`;
 }
