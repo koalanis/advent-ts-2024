@@ -1,0 +1,189 @@
+
+<html>
+  <head>
+      <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+      <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=VT323&display=swap" rel="stylesheet">
+
+      
+<style>
+    html {
+      cursor: default;
+    }
+    a {
+      cursor: pointer;
+    }
+    pre,code {
+      font-family: 'Roboto Mono', monospace;
+      text-align: left;
+    }
+    body {
+      background-color: #1a1b26;
+      color: #ffffff;
+      width: 80%;
+      margin-inline: auto;
+      padding-block: 4rem;
+    }
+    .art {
+      line-height: 1rem;
+      font-family: 'Roboto Mono', monospace;
+    }
+    .green {
+      color: #518706;
+    }
+    .white {
+      color: #ffffff;
+    }
+    .brown {
+      color: #8b4513;
+    }
+    .progress-section {
+      display: flex;
+      justify-content: center;
+      gap: 1%;
+      flex-wrap: wrap;
+    }
+    .container-center {
+      margin: auto;
+      margin-bottom: 1.5rem;
+    }
+    .red {
+      color: #aa4444
+    }
+    .blue {
+      color: #4444aa
+    }
+    .gold {
+      color: #f7d51d;
+    }
+    .off-green {
+      color: #92cc41;
+    }
+    .aoc-banner {
+      text-align: center;
+    }
+    .nes-container.is-dark{
+      background-color:  #1a1b26;
+    }
+    .nes-container.is-dark::after{
+      background-color:  #1a1b26;
+    }
+    .art{
+      text-align: center;
+    }
+    .nes-container.is-dark.with-title > .title   {
+      background-color:  #1a1b26;
+    }
+    .hljs {
+      background-color:  #1a1b26 !important;
+    }
+</style>
+
+      
+  </head>
+  <body>
+    
+<body>
+  <a href="./index.html">back home</a>
+  <div class="aoc-banner ">
+    <p class="title">Day - 2</p>
+
+    <div style="padding-block-end: 2rem">
+      <i class="nes-icon star "></i>
+    </div>
+    
+  
+  
+  
+  
+    <div class="nes-container with-title is-dark">
+      <p class="title">Part 1 - Code</p>
+      
+    <pre>
+      <code>
+import { getAdventContext } from "./utils.ts";
+
+type ReportOutcome = "safe" | "unsafe";
+function checkReport(line: string): ReportOutcome {
+  const parsed = line.split(" ");
+  let increasing: boolean | null = null;
+
+  for (let i = 1; i < parsed.length; i++) {
+    let num = Number.parseInt(parsed[i]);
+    // deno-lint-ignore prefer-const
+    let prev = Number.parseInt(parsed[i - 1]);
+    let delta = num - prev;
+
+    const oldIncreasing: boolean | null = increasing;
+    if (delta > 0) increasing = true;
+    else if (delta < 0) increasing = false;
+    else return "unsafe";
+
+    if (oldIncreasing != null && oldIncreasing !== increasing) {
+      return "unsafe";
+    }
+
+    if (!(1 <= Math.abs(delta) && Math.abs(delta) <= 3)) return "unsafe";
+  }
+
+  return "safe";
+}
+
+function checkReportTwo(line: string): ReportOutcome {
+  const parsed = line.split(" ");
+
+  for (let i = 0; i < parsed.length; i++) {
+    const newString = parsed.slice(0, i).concat(
+      parsed.slice(i + 1, parsed.length),
+    );
+    if (checkReport(newString.join(" ")) === "safe") {
+      return "safe";
+    }
+  }
+  return "unsafe";
+}
+
+export async function dayTwo() {
+  const ADVENT = getAdventContext({ day: 2, year: 2024, debug: true });
+  const text = await ADVENT.getDataFile();
+  const out = text.split("\n").map((line: string) => checkReport(line))
+    .filter((status) => status == "safe")
+    .length;
+  ADVENT.reportPartOne(out);
+
+  const out2 = text.split("\n")
+    .map((line: string) => {
+      if (checkReport(line) === "safe") {
+        return "safe";
+      }
+      return checkReportTwo(line);
+    })
+    .filter((status) => status == "safe")
+    .length;
+
+  ADVENT.reportPartTwo(out2);
+}
+
+      </code>
+    </pre>
+  
+    </div>
+
+  
+
+  
+  
+  
+
+
+  </div>
+</body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/tomorrow-night-blue.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
