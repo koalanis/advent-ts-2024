@@ -1,5 +1,5 @@
-import {dayOne} from './dayOne.ts';
-import {dayTwo} from "./dayTwo.ts";
+import { dayOne } from "./dayOne.ts";
+import { dayTwo } from "./dayTwo.ts";
 
 async function main() {
   await dayOne();
