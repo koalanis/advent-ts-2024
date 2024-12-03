@@ -13,6 +13,7 @@ export async function dayOne() {
   });
 
   left = left.sort();
+
   right = right.sort();
 
   const delta = left.map((l, idx) => Math.abs(l - right[idx])).reduce((a, b) =>
