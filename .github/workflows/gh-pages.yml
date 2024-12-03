@@ -31,7 +31,7 @@ jobs:
 
       - name: Verify static site generation
         run: |
-          if [-d "advent-pages"]; then
+          if [ -d "advent-pages" ]; then
             echo "Folder exists"
           else
             echo "Folder does not exist!"
