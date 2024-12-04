@@ -1,10 +1,10 @@
-type AdventContextInput = {
+export type AdventContextInput = {
   day: number;
   year: number;
   debug?: boolean;
 };
 
-type AdventContext = AdventContextInput & {
+export type AdventContext = AdventContextInput & {
   getDataFile: (isTest?: boolean) => Promise<string>;
   log: typeof console.log;
   reportPartOne: typeof console.log;
@@ -43,18 +43,14 @@ export function getAdventContext({
     },
 
     reportPartOne: (data) => {
-      if (debug) {
-        console.log(`== Advent ${year} day${day} part 1 ==`);
-        console.log(data);
-        console.log("=====\n\n");
-      }
+      console.log(`== Advent ${year} day${day} part 1 ==`);
+      console.log(data);
+      console.log("=====\n\n");
     },
     reportPartTwo: (data) => {
-      if (debug) {
-        console.log(`== Advent ${year} day${day} part 2 ==`);
-        console.log(data);
-        console.log("=====\n\n");
-      }
+      console.log(`== Advent ${year} day${day} part 2 ==`);
+      console.log(data);
+      console.log("=====\n\n");
     },
   };
 }

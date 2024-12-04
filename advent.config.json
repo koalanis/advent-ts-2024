@@ -5,14 +5,18 @@
     "1": {
       "partOneDone": true,
       "partTwoDone": true,
-      "codeOne": "./dayOne.ts"
+      "codeOne": "./src/dayOne.ts"
     },
     "2": {
       "partOneDone": true,
       "partTwoDone": true,
-      "codeOne": "./dayTwo.ts"
+      "codeOne": "./src/dayTwo.ts"
     },
-    "3": {},
+    "3": {
+      "partOneDone": true,
+      "partTwoDone": true,
+      "codeOne": "./src/dayThree.ts"
+    },
     "4": {},
     "5": {},
     "6": {},
