@@ -14,7 +14,7 @@ export async function dayThree() {
  * @param text
  */
 function parseInstrunctionString(text: string): number {
-    const regexp = /mul\((\d+),(\d+)\)/g;
+  const regexp = /mul\((\d+),(\d+)\)/g;
 
   const array = [...text.matchAll(regexp)];
 
@@ -35,9 +35,9 @@ function solvePartOne(text: string, ADVENT: AdventContext) {
 function getActiveInstructions(text: string): string {
   let splitOnDonts = text.split(`don't()`);
   const collect = [splitOnDonts[0]];
-  for(let i = 1; i < splitOnDonts.length; i++) {
-    let splitOnDos = splitOnDonts[i].split('do()');
-    for(let j = 1; j < splitOnDos.length; j++) {
+  for (let i = 1; i < splitOnDonts.length; i++) {
+    let splitOnDos = splitOnDonts[i].split("do()");
+    for (let j = 1; j < splitOnDos.length; j++) {
       collect.push(splitOnDos[j]);
     }
   }
@@ -45,7 +45,6 @@ function getActiveInstructions(text: string): string {
 }
 
 function solvePartTwo(text: string, ADVENT: AdventContext) {
-
   const metaText = getActiveInstructions(text);
   const sum = parseInstrunctionString(metaText);
 

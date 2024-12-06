@@ -17,8 +17,16 @@
       "partTwoDone": true,
       "codeOne": "./src/dayThree.ts"
     },
-    "4": {},
-    "5": {},
+    "4": {
+      "partOneDone": true,
+      "partTwoDone": true,
+      "codeOne": "./src/dayFour.ts"
+    },
+    "5": {
+      "partOneDone": true,
+      "partTwoDone": true,
+      "codeOne": "./src/dayFive.ts"
+    },
     "6": {},
     "7": {},
     "8": {},
