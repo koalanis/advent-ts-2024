@@ -63,7 +63,6 @@ const isCorrectlyOrdered = (
   return true;
 };
 
-
 /**
  * Given an invalid number sequence, and the expected ordering maps, sort the invalid number sequence into its expected
  * valid order
