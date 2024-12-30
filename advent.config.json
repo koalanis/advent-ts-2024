@@ -37,7 +37,11 @@
       "partTwoDone": true,
       "codeOne": "./src/daySeven.ts"
     },
-    "8": {},
+    "8": {
+      "partOneDone": true,
+      "partTwoDone": true,
+      "codeOne": "./src/dayEight.ts"
+    },
     "9": {},
     "10": {},
     "11": {},
