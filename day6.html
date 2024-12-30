@@ -106,19 +106,19 @@
       <code>
 import { getAdventContext } from "./utils.ts";
 
-type Coor = [number, number];
-type CoorKey = `(${number},${number})`;
+export type Coor = [number, number];
+export type CoorKey = `(${number},${number})`;
 type Dir = "N" | "E" | "S" | "W";
 type CoorDirKey = `(${number},${number},${Dir})`;
 
-function toCoorKey(coor: Coor): CoorKey {
+export function toCoorKey(coor: Coor): CoorKey {
   return `(${coor[0]},${coor[1]})`;
 }
 
-function toCoor(coorKey: CoorKey): Coor {
-  const data = coorKey.slice(1, coorKey.length - 1).split(",").map(
-    Number.parseInt,
-  );
+export function toCoor(coorKey: CoorKey): Coor {
+  const data = coorKey.slice(1, coorKey.length - 1).split(",").map((n) => {
+    return Number.parseInt(n);
+  });
   return [data[0], data[1]];
 }
 
