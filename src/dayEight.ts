@@ -1,4 +1,4 @@
-import {AdventContext, getAdventContext} from "./utils.ts";
+import { AdventContext, getAdventContext } from "./utils.ts";
 import { Coor, CoorKey, toCoor, toCoorKey } from "./daySix.ts";
 
 type State = {
@@ -93,7 +93,11 @@ function findAntinodes(state: State, wave?: boolean): Set<CoorKey> {
   return antinodes;
 }
 
-function printState(advent: AdventContext, state: State, antinodes?: Set<CoorKey>) {
+function printState(
+  advent: AdventContext,
+  state: State,
+  antinodes?: Set<CoorKey>,
+) {
   let data = "";
   for (let i = 0; i < state.rows; ++i) {
     let line = "";
